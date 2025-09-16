@@ -1,0 +1,29 @@
+---
+import { Icon } from "astro-icon/components";
+import { AUTHOR } from "consts";
+import { SITE_TITLE } from "consts";
+
+const today = new Date();
+---
+
+<footer
+  class="w-full bg-gradient-to-br from-[#040405]/60 to-[#001219]/30 p-4 py-6 text-center shadow-2xl ring-1 ring-white/5"
+>
+  {AUTHOR} • &copy; {today.getFullYear()} • {SITE_TITLE}
+  <div class="mt-4 flex justify-center gap-8">
+    <a href="https://x.com/erickleite338" target="_blank">
+      <span class="sr-only">Siga-me no X</span>
+      <Icon class="size-6" name="social/X" />
+    </a>
+
+    <a href="https://github.com/Erick-Leite/Open-Neon-Slot" target="_blank">
+      <span class="sr-only">Acesse o repositório do projeto no GitHub</span>
+      <Icon class="size-6" name="social/GitHub" />
+    </a>
+
+    <a href="mailto:erickleite338@gmail.com" target="_blank">
+      <span class="sr-only">Envie-me uma mensagem no Gmail</span>
+      <Icon class="size-6" name="social/Gmail" />
+    </a>
+  </div>
+</footer>
