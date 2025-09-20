@@ -11,9 +11,9 @@
 
 ---
 
-<h1 style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+<h1 style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
   <img src="public/favicon.svg" alt="Ícone do Open Neon Slot" height="64" width="64">
-  <span style="margin-top: auto; margin-bottom: auto;">Open Neon Slot</span>
+  <span>Open Neon Slot</span>
 </h1>
 
 Bem-vindo ao **Open Neon Slot**, um caça-níquel open-source em puro estilo **neon arcade**!
