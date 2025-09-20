@@ -1,46 +1,79 @@
-# Astro Starter Kit: Basics
-
-```sh
-npm create astro@latest -- --template basics
+```
+  ██████╗ ██████╗ ███████╗███╗   ██╗    ███╗   ██╗███████╗ ██████╗ ███╗   ██╗
+ ██╔═══██╗██╔══██╗██╔════╝████╗  ██║    ████╗  ██║██╔════╝██╔═══██╗████╗  ██║
+ ██║   ██║██████╔╝█████╗  ██╔██╗ ██║    ██╔██╗ ██║█████╗  ██║   ██║██╔██╗ ██║
+ ██║   ██║██╔═══╝ ██╔══╝  ██║╚██╗██║    ██║╚██╗██║██╔══╝  ██║   ██║██║╚██╗██║
+ ╚██████╔╝██║     ███████╗██║ ╚████║    ██║ ╚████║███████╗╚██████╔╝██║ ╚████║
+  ╚═════╝ ╚═╝     ╚══════╝╚═╝  ╚═══╝    ╚═╝  ╚═══╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+✨ **Open Neon Slot** ✨
 
-## 🚀 Project Structure
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+<h1 style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+  <img src="public/favicon.svg" alt="Ícone do Open Neon Slot" height="64" width="64">
+  <span style="margin-top: auto; margin-bottom: auto;">Open Neon Slot</span>
+</h1>
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+Bem-vindo ao **Open Neon Slot**, um caça-níquel open-source em puro estilo **neon arcade**!
+Este projeto foi criado para **fins educacionais**, com o objetivo de mostrar um algoritmo próximo ao funcionamento real de uma slot machine.
+
+💡 Não envolve apostas de verdade — aqui a diversão é **aprender** e **experimentar**!
+
+## 🕹️ Tecnologias usadas
+
+⚙️ [Astro](https://astro.build/) — framework ultrarrápido para web  
+🎨 [TailwindCSS](https://tailwindcss.com/) — estilo responsivo e moderno  
+💎 [Astro Icon](https://github.com/natemoo-re/astro-icon) — ícones para completar a estética arcade
+
+## 🚀 Como rodar o projeto
+
+Clone o repositório e acenda as luzes do cassino:
+
+```bash
+git clone [https://github.com/seu-usuario/open-neon-slot.git](https://github.com/seu-usuario/open-neon-slot.git)
+cd open-neon-slot
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+Instale as dependências mágicas:
 
-## 🧞 Commands
+```bash
+npm install
+```
 
-All commands are run from the root of the project, from a terminal:
+Inicie o cassino no modo desenvolvimento 🕹️:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+```bash
+npm run dev
+```
 
-## 👀 Want to learn more?
+Gere a versão de produção 💻:
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+```bash
+npm run build
+```
+
+Pré-visualize sua máquina brilhando em neon 🌟:
+
+```bash
+npm run preview
+```
+
+## 🎯 Objetivo do projeto
+
+O **Open Neon Slot** não é sobre dinheiro, mas sobre **conhecimento**\!
+Aqui você encontra um exemplo prático de como funcionam os **algoritmos de caça-níquel**, com:
+
+- 🎲 Geração de resultados pseudoaleatórios
+- 🎰 Simulação de rolagem ou movimento dos rolos
+- 📊 Base para estudo e experimentação
+
+## 📜 Licença
+
+📄 Este projeto está sob a licença [MIT](https://opensource.org/licenses/MIT).
+Use, modifique e brilhe em neon\! ✨
+
+### 🌐 Entre no ritmo arcade:
+
+**Aprenda, brinque e explore o código como se fosse um verdadeiro cassino em estilo neon\!**
