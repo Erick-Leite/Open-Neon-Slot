@@ -24,21 +24,22 @@ import { Image } from "astro:assets";
           </div>
 
           <div class="text-right">
-            <div id="balance" class="text-lg font-semibold">R$ 1000</div>
+            <div id="balance" class="text-lg font-semibold" aria-live="polite">
+              R$ 1000
+            </div>
             <div class="text-xs text-slate-300">Saldo</div>
           </div>
         </div>
 
         <p class="text-sm text-slate-300">
-          Comece com R$1000 — escolha sua aposta e dificuldade, depois gire!
+          Comece com R$1000 — escolha sua aposta e dificuldade, depois gire até
+          três vezes!
         </p>
       </header>
 
-      <!-- Controls -->
       <div class="mb-6 grid grid-cols-1 gap-4 md:grid-cols-3">
-        <!-- Bet -->
         <div class="space-y-1">
-          <label class="text-xs text-slate-300">Aposta</label>
+          <label for="betInput" class="text-xs text-slate-300">Aposta</label>
           <div class="flex gap-2">
             <input
               id="betInput"
@@ -47,10 +48,12 @@ import { Image } from "astro:assets";
               step="1"
               value="50"
               class="w-full rounded-lg border border-white/5 bg-[#0b1220] px-3 py-2 text-white"
+              aria-label="Valor da aposta"
             />
             <select
               id="quickBet"
               class="rounded-lg border border-white/5 bg-[#0b1220] px-3 py-2"
+              aria-label="Apostas rápidas"
             >
               <option value="10">R$10</option>
               <option value="25">R$25</option>
@@ -60,12 +63,14 @@ import { Image } from "astro:assets";
           </div>
         </div>
 
-        <!-- Difficulty -->
         <div class="space-y-1">
-          <label class="text-xs text-slate-300">Dificuldade</label>
+          <label for="difficulty" class="text-xs text-slate-300"
+            >Dificuldade</label
+          >
           <select
             id="difficulty"
             class="w-full rounded-lg border border-white/5 bg-[#0b1220] px-3 py-2"
+            aria-label="Selecionar dificuldade"
           >
             <option value="easy">Fácil</option>
             <option value="medium">Médio</option>
@@ -78,68 +83,83 @@ import { Image } from "astro:assets";
           </div>
         </div>
 
-        <!-- Spin -->
         <div class="flex items-end justify-end">
-          <button
-            id="spinBtn"
-            class="spin-btn inline-flex transform items-center gap-2 rounded-2xl bg-gradient-to-r from-amber-400 to-orange-500 px-6 py-3 font-bold text-black shadow-lg active:scale-95"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              ><path
-                d="M3 10a7 7 0 117 7v-1a6 6 0 100-12H8l3 3-3 3h2a4 4 0 110 8 4 4 0 014-4h1a7 7 0 01-7 7A7 7 0 013 10z"
-              ></path></svg
+          <div class="flex items-center gap-2">
+            <div class="mr-3 text-right">
+              <div
+                id="roundChances"
+                class="text-sm font-medium"
+                aria-live="polite"
+              >
+                Chances: —
+              </div>
+              <div class="text-xs text-slate-300">Por rodada</div>
+            </div>
+            <button
+              id="spinBtn"
+              class="spin-btn inline-flex transform items-center gap-2 rounded-2xl bg-gradient-to-r from-amber-400 to-orange-500 px-6 py-3 font-bold text-black shadow-lg active:scale-95"
+              aria-pressed="false"
             >
-            Girar
-          </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                ><path
+                  d="M3 10a7 7 0 117 7v-1a6 6 0 100-12H8l3 3-3 3h2a4 4 0 110 8 4 4 0 014-4h1a7 7 0 01-7 7A7 7 0 013 10z"
+                ></path></svg
+              >
+              Girar
+            </button>
+          </div>
         </div>
       </div>
 
-      <!-- Slot Machine visual -->
       <div
         class="slot-machine grid grid-cols-3 items-center justify-center gap-4 rounded-xl bg-[#061024]/60 p-6"
       >
-        <!-- Reel 1 -->
         <div
           class="reel-container relative flex items-center justify-center rounded-lg border border-white/5 bg-[#071331] p-3 shadow-inner"
         >
           <div
             class="reel flex h-28 w-full flex-col items-center justify-center text-4xl font-bold"
             id="reel0"
+            aria-hidden="true"
           >
           </div>
         </div>
 
-        <!-- Reel 2 -->
         <div
           class="reel-container relative flex items-center justify-center rounded-lg border border-white/5 bg-[#071331] p-3 shadow-inner"
         >
           <div
             class="reel flex h-28 w-full flex-col items-center justify-center text-4xl font-bold"
             id="reel1"
+            aria-hidden="true"
           >
           </div>
         </div>
 
-        <!-- Reel 3 -->
         <div
           class="reel-container relative flex items-center justify-center rounded-lg border border-white/5 bg-[#071331] p-3 shadow-inner"
         >
           <div
             class="reel flex h-28 w-full flex-col items-center justify-center text-4xl font-bold"
             id="reel2"
+            aria-hidden="true"
           >
           </div>
         </div>
       </div>
 
-      <!-- Feedback / Log -->
       <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
         <div class="rounded-lg border border-white/5 bg-[#07122a] p-4">
-          <div id="message" class="text-sm leading-relaxed">
+          <div
+            id="message"
+            class="text-sm leading-relaxed"
+            role="status"
+            aria-live="polite"
+          >
             Escolha a aposta e a dificuldade, depois pressione <strong
               >Girar</strong
             >!
@@ -150,9 +170,7 @@ import { Image } from "astro:assets";
           <div class="mb-2 text-xs text-slate-300">
             Tabela de Pagamentos (exemplo)
           </div>
-          <ul id="paytable" class="space-y-1 text-sm">
-            <!-- JS will populate -->
-          </ul>
+          <ul id="paytable" class="space-y-1 text-sm"></ul>
         </div>
       </div>
     </section>
@@ -160,10 +178,6 @@ import { Image } from "astro:assets";
 </div>
 
 <style>
-  /* Este arquivo adiciona animações e ajustes visuais extras ao Tailwind.
-   Se estiver usando Tailwind compilado localmente, coloque aqui só os utilitários extras. */
-
-  /* animação de "rolling" simulando a roleta */
   @keyframes reel-spin {
     0% {
       transform: translateY(0);
@@ -179,7 +193,6 @@ import { Image } from "astro:assets";
     }
   }
 
-  /* pequeno brilho neon quando ganhar */
   .win-glow {
     box-shadow:
       0 0 20px rgba(250, 200, 60, 0.25),
@@ -190,7 +203,6 @@ import { Image } from "astro:assets";
       box-shadow 220ms ease;
   }
 
-  /* efeito quando perdemos (breve sombreamento) */
   .lose-tone {
     opacity: 0.9;
     transform: translateY(0);
@@ -199,7 +211,6 @@ import { Image } from "astro:assets";
       opacity 220ms ease;
   }
 
-  /* animação visual do símbolo ao parar (pequeno "bounce") */
   .reel .symbol {
     display: inline-block;
     animation: bounceIn 400ms ease;
@@ -220,25 +231,23 @@ import { Image } from "astro:assets";
     }
   }
 
-  /* botão spin hover/active refine */
   .spin-btn {
     transition:
       transform 120ms ease,
       box-shadow 120ms ease;
   }
+
   .spin-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
   }
 
-  /* garantir que reels mostrem o símbolo central com boa legibilidade */
   .reel {
     font-size: 2.6rem;
     line-height: 1;
     text-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
   }
 
-  /* mobile tweaks */
   @media (max-width: 640px) {
     .reel {
       font-size: 2.2rem;
@@ -247,23 +256,28 @@ import { Image } from "astro:assets";
 </style>
 
 <script>
-  // Lógica do jogo e interações
-
-  type Symbol = {
-    id: string;
-    icon: string;
-    name: string;
-    multiplier: number;
-    rarity: number;
+  /* Tipos e constantes do jogo */
+  type SymbolItem = {
+    readonly id: string;
+    readonly icon: string;
+    readonly name: string;
+    readonly multiplier: number;
+    readonly frequency: number;
   };
 
-  const SYMBOLS: Symbol[] = [
-    { id: "diamond", icon: "💎", name: "Diamante", multiplier: 50, rarity: 1 },
-    { id: "seven", icon: "7️⃣", name: "Sete", multiplier: 20, rarity: 2 },
-    { id: "bar", icon: "🔶", name: "Barra", multiplier: 10, rarity: 4 },
-    { id: "bell", icon: "🔔", name: "Sino", multiplier: 6, rarity: 6 },
-    { id: "cherry", icon: "🍒", name: "Cereja", multiplier: 3, rarity: 10 },
-    { id: "lemon", icon: "🍋", name: "Limão", multiplier: 2, rarity: 12 },
+  const SYMBOLS: readonly SymbolItem[] = [
+    {
+      id: "diamond",
+      icon: "💎",
+      name: "Diamante",
+      multiplier: 50,
+      frequency: 2,
+    },
+    { id: "seven", icon: "7️⃣", name: "Sete", multiplier: 20, frequency: 3 },
+    { id: "bar", icon: "🔶", name: "Barra", multiplier: 10, frequency: 6 },
+    { id: "bell", icon: "🔔", name: "Sino", multiplier: 6, frequency: 10 },
+    { id: "cherry", icon: "🍒", name: "Cereja", multiplier: 3, frequency: 20 },
+    { id: "lemon", icon: "🍋", name: "Limão", multiplier: 2, frequency: 50 },
   ];
 
   type DifficultyLevel = "easy" | "medium" | "normal" | "hard" | "extreme";
@@ -275,12 +289,7 @@ import { Image } from "astro:assets";
     readonly hint: string;
   }
 
-  type DifficultyConfigMap = Record<
-    DifficultyLevel,
-    Readonly<DifficultyConfiguration>
-  >;
-
-  const DIFFICULTY_CONFIG: DifficultyConfigMap = {
+  const DIFFICULTY_CONFIG: Record<DifficultyLevel, DifficultyConfiguration> = {
     easy: {
       label: "Easy",
       weightFactor: 1.6,
@@ -303,84 +312,122 @@ import { Image } from "astro:assets";
       label: "Hard",
       weightFactor: 0.8,
       payoutFactor: 1.15,
-      hint: "Ganhas mais difíceis, recompensas maiores.",
+      hint: "Ganhos mais difíceis, recompensas maiores.",
     },
     extreme: {
       label: "Extreme",
       weightFactor: 0.55,
       payoutFactor: 1.6,
-      hint: "Vitórias muito raras, pagamentos muito altos.",
+      hint: "Vitórias muito raras, pagamentos muito maiores.",
     },
-  };
+  } as const;
 
-  let state = {
+  /* Estado do jogo */
+  interface GameState {
+    balance: number;
+    spinning: boolean;
+    roundActive: boolean;
+    chancesLeft: number;
+  }
+
+  const INITIAL_ROUND_CHANCES = 3;
+
+  const state: GameState = {
     balance: 1000,
     spinning: false,
+    roundActive: false,
+    chancesLeft: 0,
   };
 
-  const balanceEl = document.getElementById("balance") as HTMLDivElement | null;
-  const betInput = document.getElementById(
-    "betInput"
-  ) as HTMLInputElement | null;
-  const quickBet = document.getElementById(
-    "quickBet"
-  ) as HTMLSelectElement | null;
-  const difficultyEl = document.getElementById(
-    "difficulty"
-  ) as HTMLSelectElement | null;
-  const spinBtn = document.getElementById(
-    "spinBtn"
-  ) as HTMLButtonElement | null;
-  const messageEl = document.getElementById("message") as HTMLDivElement | null;
+  /* Helpers para buscar elementos com tipagem */
+  function $<T extends HTMLElement>(selector: string) {
+    return document.getElementById(selector) as T | null;
+  }
+
+  const balanceEl = $<HTMLDivElement>("balance");
+  const betInput = $<HTMLInputElement>("betInput");
+  const quickBet = $<HTMLSelectElement>("quickBet");
+  const difficultyEl = $<HTMLSelectElement>("difficulty");
+  const spinBtn = $<HTMLButtonElement>("spinBtn");
+  const messageEl = $<HTMLDivElement>("message");
   const reelEls = [
-    document.getElementById("reel0") as HTMLDivElement | null,
-    document.getElementById("reel1") as HTMLDivElement | null,
-    document.getElementById("reel2") as HTMLDivElement | null,
-  ] as HTMLDivElement[] | null;
-  const paytableEl = document.getElementById(
-    "paytable"
-  ) as HTMLUListElement | null;
-  const diffHintEl = document.getElementById(
-    "diffHint"
-  ) as HTMLDivElement | null;
+    $<HTMLDivElement>("reel0"),
+    $<HTMLDivElement>("reel1"),
+    $<HTMLDivElement>("reel2"),
+  ];
+  const paytableEl = $<HTMLUListElement>("paytable");
+  const diffHintEl = $<HTMLDivElement>("diffHint");
+  const roundChancesEl = $<HTMLDivElement>("roundChances");
 
-  // Inicialização da view e dados
-  updateBalance(0);
-  populatePaytable();
-  updateDifficultyHint();
-
-  /**
-   * Atualiza o saldo exibido.
-   * delta é aplicado ao saldo atual; usar 0 apenas para re-render.
-   */
-  function updateBalance(delta: number) {
-    state.balance += delta;
-    if (balanceEl) {
-      balanceEl.textContent = `R$ ${Math.max(0, Math.round(state.balance))}`;
-    }
+  /* Atualização visual do saldo */
+  function updateBalance(delta = 0) {
+    state.balance = Math.max(0, Math.round(state.balance + delta));
+    if (balanceEl) balanceEl.textContent = `R$ ${state.balance}`;
   }
 
-  /**
-   * Escolhe um símbolo ponderado pela raridade e pela dificuldade selecionada.
-   */
-  function weightedRandomSymbol(difficultyKey: DifficultyLevel) {
+  /* Mensagens ao usuário com ajustes visuais */
+  function showMessage(html: string, kind: "info" | "win" | "lose" = "info") {
+    if (!messageEl) return;
+    messageEl.innerHTML = html;
+    messageEl.classList.remove("win-glow", "lose-tone");
+    if (kind === "win") messageEl.classList.add("win-glow");
+    if (kind === "lose") messageEl.classList.add("lose-tone");
+  }
+
+  /* Atualiza dica de dificuldade e paytable */
+  function updateDifficultyHint() {
+    const key = difficultyEl?.value as DifficultyLevel | undefined;
+    if (diffHintEl && key) diffHintEl.textContent = DIFFICULTY_CONFIG[key].hint;
+  }
+
+  function populatePaytable(difficultyKey: DifficultyLevel) {
+    if (!paytableEl) return;
     const config = DIFFICULTY_CONFIG[difficultyKey];
-    const items: Symbol[] = [];
-    SYMBOLS.forEach((sym) => {
-      const base = (1 / sym.rarity) * 100;
-      const weight = Math.max(1, Math.round(base * config.weightFactor));
-      for (let i = 0; i < weight; i++) items.push(sym);
-    });
-    return items[Math.floor(Math.random() * items.length)];
+    paytableEl.innerHTML = "";
+    const frag = document.createDocumentFragment();
+    [...SYMBOLS]
+      .sort((a, b) => b.multiplier - a.multiplier)
+      .forEach((s) => {
+        const li = document.createElement("li");
+        li.className = "flex items-center justify-between";
+        li.innerHTML = `<span class="flex items-center gap-2"><span class="text-2xl">${s.icon}</span><strong>${s.name}</strong></span><span class="text-sm">3x = x${(s.multiplier * config.payoutFactor).toFixed(1)}</span>`;
+        frag.appendChild(li);
+      });
+    paytableEl.appendChild(frag);
   }
 
-  /**
-   * Reproduz uma pequena sequência de tons para feedback.
-   * Implementado de forma defensiva (pode falhar em ambientes sem áudio).
-   */
-  function playToneSequence(sequence = [440, 660], duration = 0.12) {
+  /* Mostra quantas chances restam (acessível) */
+  function updateRoundChancesDisplay() {
+    if (!roundChancesEl) return;
+    roundChancesEl.textContent = state.roundActive
+      ? `Chances: ${state.chancesLeft}`
+      : `Chances: —`;
+  }
+
+  /* Seleção ponderada sem criar arrays grandes */
+  function weightedRandomSymbol(difficultyKey: DifficultyLevel): SymbolItem {
+    const config = DIFFICULTY_CONFIG[difficultyKey];
+    // Calcula peso cumulativo
+    const weights = SYMBOLS.map((sym) => {
+      const base = sym.frequency;
+      const adjustment =
+        sym.multiplier > 10 ? config.weightFactor : 1 / config.weightFactor;
+      return Math.max(1, Math.round(base * adjustment));
+    });
+    const total = weights.reduce((a, b) => a + b, 0);
+    let r = Math.floor(Math.random() * total);
+    for (let i = 0; i < SYMBOLS.length; i++) {
+      if (r < weights[i]) return SYMBOLS[i];
+      r -= weights[i];
+    }
+    return SYMBOLS[SYMBOLS.length - 1];
+  }
+
+  /* Toca tons (opcional/defensivo) */
+  function playToneSequence(sequence: number[] = [440, 660], duration = 0.12) {
     try {
-      const ctx = new window.AudioContext();
+      const ctx = new (window.AudioContext ||
+        (window as any).webkitAudioContext)();
       let start = ctx.currentTime;
       sequence.forEach((freq, i) => {
         const o = ctx.createOscillator();
@@ -394,103 +441,49 @@ import { Image } from "astro:assets";
         o.stop(start + (i + 0.9) * duration);
       });
     } catch (e) {
-      console.warn("Áudio não disponível", e);
+      // ambiente sem áudio: silencioso, sem erro
+      // console.warn("Áudio não disponível", e);
     }
   }
 
-  /**
-   * Exibe mensagem de feedback no painel.
-   * kind pode ajustar classes visuais (ex.: "win" / "lose" / "info").
-   */
-  function showMessage(html: string, kind = "info") {
-    if (!messageEl) return;
-    messageEl.innerHTML = html;
-    messageEl.classList.remove("win-glow", "lose-tone");
-    if (kind === "win") {
-      messageEl.classList.add("win-glow");
-    } else if (kind === "lose") {
-      messageEl.classList.add("lose-tone");
-    }
-  }
-
-  function populatePaytable() {
-    if (!paytableEl) return;
-    paytableEl.innerHTML = "";
-    SYMBOLS.slice()
-      .sort((a, b) => b.multiplier - a.multiplier)
-      .forEach((s) => {
-        const li = document.createElement("li");
-        li.className = "flex items-center justify-between";
-        li.innerHTML = `<span class="flex items-center gap-2"><span class="text-2xl">${s.icon}</span><strong>${s.name}</strong></span><span class="text-sm">3x = x${s.multiplier}</span>`;
-        paytableEl.appendChild(li);
-      });
-  }
-
-  function updateDifficultyHint() {
-    const key = difficultyEl?.value as DifficultyLevel | null;
-    if (diffHintEl && key) {
-      diffHintEl.textContent = DIFFICULTY_CONFIG[key].hint;
-    }
-  }
-
-  /**
-   * Avalia os símbolos finais e determina tipo de resultado.
-   * Regras:
-   * - 3 iguais: vitória (pagamento calculado)
-   * - 2 iguais: "quase ganhou" (sem pagamento, apenas feedback)
-   * - nenhuma combinação: perda
-   *
-   * Retorna objeto com win:boolean, amount:number, kind:"three"|"two"|"none" e symbol (quando aplicável).
-   */
+  /* Avalia resultado dos símbolos */
   function evaluateResult(
-    symbols: Symbol[],
+    symbols: SymbolItem[],
     bet: number,
     difficultyKey: DifficultyLevel
   ) {
     const config = DIFFICULTY_CONFIG[difficultyKey];
-    const icons = symbols.map((s) => s.id);
+    const ids = symbols.map((s) => s.id);
 
-    // Três iguais => grande ganho
-    if (icons[0] === icons[1] && icons[1] === icons[2]) {
+    if (ids[0] === ids[1] && ids[1] === ids[2]) {
       const sym = symbols[0];
       const amount = Math.round(bet * sym.multiplier * config.payoutFactor);
-      return { win: true, amount, kind: "three", symbol: sym };
+      return { win: true, amount, kind: "three", symbol: sym } as const;
     }
 
-    // Dois iguais => devolve informação para UI mostrar "quase ganhou" (sem pagamento)
-    if (
-      icons[0] === icons[1] ||
-      icons[1] === icons[2] ||
-      icons[0] === icons[2]
-    ) {
+    if (ids[0] === ids[1] || ids[1] === ids[2] || ids[0] === ids[2]) {
       const matchedId =
-        icons[0] === icons[1]
-          ? icons[0]
-          : icons[1] === icons[2]
-            ? icons[1]
-            : icons[0];
-      const sym = SYMBOLS.find((s) => s.id === matchedId);
-      return { win: false, amount: 0, kind: "two", symbol: sym ?? null };
+        ids[0] === ids[1] ? ids[0] : ids[1] === ids[2] ? ids[1] : ids[0];
+      const sym = SYMBOLS.find((s) => s.id === matchedId) ?? null;
+      return { win: false, amount: 0, kind: "two", symbol: sym } as const;
     }
 
-    // Nenhuma combinação
-    return { win: false, amount: 0, kind: "none", symbol: null };
+    return { win: false, amount: 0, kind: "none", symbol: null } as const;
   }
 
-  /**
-   * Animação visual dos reels; retorna Promise com os símbolos finais.
-   */
-  function spinReelsVisual(difficultyKey: DifficultyLevel) {
+  /* Anima os reels e resolve com símbolos finais */
+  function spinReelsVisual(
+    difficultyKey: DifficultyLevel
+  ): Promise<SymbolItem[]> {
     const spinDurations = [1400, 2000, 2600];
-    const spinnerPromises = reelEls?.map((el, idx) => {
-      return new Promise<Symbol>((resolve) => {
+    const promises = reelEls.map((el, idx) => {
+      return new Promise<SymbolItem>((resolve) => {
+        if (!el) {
+          resolve(SYMBOLS[0]);
+          return;
+        }
         const endAt = Date.now() + spinDurations[idx];
         const tick = () => {
-          if (!el) {
-            // Proteção caso o elemento não exista
-            resolve(SYMBOLS[0]);
-            return;
-          }
           if (Date.now() < endAt) {
             const randomSymbol =
               SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
@@ -504,34 +497,84 @@ import { Image } from "astro:assets";
         };
         tick();
       });
-    }) as Promise<Symbol>[] | null;
-
-    if (spinnerPromises) {
-      return Promise.all(spinnerPromises);
-    }
+    });
+    return Promise.all(promises);
   }
 
-  // Evento de clique no botão de girar
+  /* Finaliza rodada e reabilita controles */
+  function endRound() {
+    state.roundActive = false;
+    state.chancesLeft = 0;
+    updateRoundChancesDisplay();
+
+    if (spinBtn) {
+      spinBtn.disabled = false;
+      spinBtn.classList.remove("opacity-80", "cursor-not-allowed");
+    }
+    [betInput, quickBet, difficultyEl].forEach((el) => {
+      if (!el) return;
+      el.disabled = false;
+      el.classList.remove("opacity-50", "cursor-not-allowed");
+    });
+  }
+
+  /* Inicializa reels com símbolos aleatórios */
+  function initReels() {
+    reelEls.forEach((el) => {
+      if (!el) return;
+      const sym = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+      el.innerHTML = `<span class="symbol">${sym.icon}</span>`;
+    });
+  }
+
+  /* Evento do botão Girar */
   spinBtn?.addEventListener("click", async () => {
     if (state.spinning) return;
     if (!betInput?.value) return;
 
-    let bet = parseInt(betInput.value, 10);
-    if (isNaN(bet) || bet <= 0) {
+    const bet = Math.max(1, Math.floor(Number(betInput.value) || 0));
+    if (!bet || bet <= 0) {
       showMessage("Insira uma aposta válida (R$).", "lose");
       return;
     }
-    if (bet > state.balance) {
-      showMessage("Saldo insuficiente para essa aposta.", "lose");
+
+    // Iniciar nova rodada se necessário
+    if (!state.roundActive) {
+      if (bet > state.balance) {
+        showMessage("Saldo insuficiente para essa aposta.", "lose");
+        return;
+      }
+      updateBalance(-bet);
+      state.roundActive = true;
+      state.chancesLeft = INITIAL_ROUND_CHANCES;
+      updateRoundChancesDisplay();
+
+      // bloquear controles de aposta/dificuldade durante a rodada
+      if (betInput) {
+        betInput.disabled = true;
+        betInput.classList.add("opacity-50", "cursor-not-allowed");
+      }
+      if (quickBet) {
+        quickBet.disabled = true;
+        quickBet.classList.add("opacity-50", "cursor-not-allowed");
+      }
+      if (difficultyEl) {
+        difficultyEl.disabled = true;
+        difficultyEl.classList.add("opacity-50", "cursor-not-allowed");
+      }
+
+      showMessage(
+        `Rodada iniciada — você tem ${state.chancesLeft} chances para essa aposta. Boa sorte!`
+      );
+    }
+
+    if (state.roundActive && state.chancesLeft <= 0) {
+      showMessage("Sua rodada já terminou. Inicie uma nova rodada.", "info");
+      endRound();
       return;
     }
 
-    const difficultyKey = difficultyEl?.value as DifficultyLevel | null;
-    updateDifficultyHint();
-
-    // Deduzimos a aposta antes do giro (comportamento intencional)
-    updateBalance(-bet);
-
+    // Executa o giro
     state.spinning = true;
     spinBtn.disabled = true;
     spinBtn.classList.add("opacity-80", "cursor-not-allowed");
@@ -539,82 +582,108 @@ import { Image } from "astro:assets";
 
     playToneSequence([220, 330, 440], 0.06);
 
-    if (!difficultyKey) return;
-    const finalSymbols = (await spinReelsVisual(difficultyKey)) as
-      | Symbol[]
-      | null;
-    if (!finalSymbols) return;
+    const difficultyKey = (difficultyEl?.value as DifficultyLevel) ?? "normal";
+    const finalSymbols = await spinReelsVisual(difficultyKey);
 
     const result = evaluateResult(finalSymbols, bet, difficultyKey);
 
     if (result.win) {
-      // Vitória completa (3 iguais)
       updateBalance(result.amount);
-      showMessage(`🎉 Você ganhou R$ ${result.amount} — Super vitória!`, "win");
+      showMessage(
+        `🎉 Parabéns você ganhou R$ ${result.amount} — Super vitória! 🤑`,
+        "win"
+      );
       playToneSequence([660, 880, 1100], 0.08);
 
-      reelEls?.forEach((el: HTMLDivElement) =>
-        el.parentElement?.classList.add("win-glow")
+      reelEls.forEach((el) => el?.parentElement?.classList.add("win-glow"));
+      setTimeout(
+        () =>
+          reelEls.forEach((el) =>
+            el?.parentElement?.classList.remove("win-glow")
+          ),
+        900
       );
-      setTimeout(() => {
-        reelEls?.forEach((el: HTMLDivElement) =>
-          el.parentElement?.classList.remove("win-glow")
-        );
-      }, 900);
-    } else if (result.kind === "two") {
-      // Dois símbolos iguais -> feedback especial "quase ganhou" (sem pagamento)
+
+      state.spinning = false;
+      endRound();
+      return;
+    }
+
+    // Não ganhou: decrementar chances
+    state.chancesLeft = Math.max(0, state.chancesLeft - 1);
+    updateRoundChancesDisplay();
+
+    if (result.kind === "two") {
       const symName = result.symbol ? result.symbol.name : "o símbolo";
-      showMessage(
-        `🤏 Quase! Você acertou dois ${symName} — sem pagamento. Tente novamente!`,
-        "info"
-      );
-      // Tom sutil para indicar proximidade
+      if (state.chancesLeft > 0) {
+        showMessage(
+          `😃 Quase lá! Você acertou dois ${symName}. Restam ${state.chancesLeft} chance(s). Tente novamente! 🤗`,
+          "info"
+        );
+      } else {
+        showMessage(
+          `😞 Quase lá mas sem sorte — você acertou dois ${symName} e acabou as chances. Tente outra rodada.`,
+          "lose"
+        );
+      }
       playToneSequence([420, 300], 0.07);
     } else {
-      // Sem combinação: perda da aposta
-      showMessage(
-        `😞 Sem combinação. Você perdeu R$ ${bet}. Tente novamente.`,
-        "lose"
-      );
+      if (state.chancesLeft > 0) {
+        showMessage(
+          `😞 Sem combinação. Restam ${state.chancesLeft} chance(s) nessa rodada.`,
+          "lose"
+        );
+      } else {
+        showMessage(
+          `😞 Sem combinação e sem chances restantes. Rodada encerrada.`,
+          "lose"
+        );
+      }
       playToneSequence([120], 0.12);
     }
 
     state.spinning = false;
-    spinBtn.disabled = false;
-    spinBtn.classList.remove("opacity-80", "cursor-not-allowed");
 
-    // Se o saldo zerar, reset amigável para a demo
+    if (state.roundActive && state.chancesLeft > 0) {
+      spinBtn.disabled = false;
+      spinBtn.classList.remove("opacity-80", "cursor-not-allowed");
+    } else if (state.chancesLeft <= 0) {
+      endRound();
+    }
+
+    // Reset amigável da demo quando saldo zerar
     if (state.balance <= 0) {
+      spinBtn.disabled = true;
       showMessage(
         "Você ficou sem saldo — redefinindo para R$1000 para a demo.",
         "lose"
       );
-      state.balance = 1000;
-      updateBalance(0);
+      setTimeout(() => {
+        state.balance = 1000;
+        updateBalance(0);
+        spinBtn.disabled = false;
+      }, 1500);
     }
   });
 
+  /* Sincroniza quickBet -> input */
   quickBet?.addEventListener("change", () => {
-    if (betInput) {
-      betInput.value = quickBet!.value;
-    }
+    if (!betInput || !quickBet) return;
+    betInput.value = quickBet.value;
   });
 
-  difficultyEl?.addEventListener("change", updateDifficultyHint);
+  difficultyEl?.addEventListener("change", () => {
+    updateDifficultyHint();
+    populatePaytable(difficultyEl.value as DifficultyLevel);
+  });
 
-  function initReels() {
-    reelEls?.forEach((el) => {
-      if (!el) return;
-      const sym = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
-      el.innerHTML = `<span class="symbol">${sym.icon}</span>`;
-    });
-  }
-
+  /* Inicialização */
   (function init() {
     initReels();
-    if (balanceEl) {
-      balanceEl.textContent = `R$ ${state.balance}`;
-    }
+    updateBalance(0);
+    updateDifficultyHint();
+    populatePaytable("normal");
+    updateRoundChancesDisplay();
     showMessage(
       "Bem-vindo! Defina sua aposta e dificuldade, depois pressione Girar. Boa sorte!"
     );
